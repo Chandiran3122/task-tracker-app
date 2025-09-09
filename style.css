@@ -1,0 +1,398 @@
+:root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6e9cd2;
+            --background-color: #f5f7fa;
+            --card-bg-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #dddddd;
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+            --warning-color: #ff9800;
+            --disabled-color: #cccccc;
+            --edit-color: #ff9800;
+            --undo-color: #4caf50;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #5a7fb5;
+            --secondary-color: #7eafdf;
+            --background-color: #1a1a1a;
+            --card-bg-color: #2d2d2d;
+            --text-color: #f0f0f0;
+            --border-color: #444444;
+            --success-color: #5cbf61;
+            --danger-color: #ff5548;
+            --warning-color: #ffaa44;
+            --disabled-color: #555555;
+            --edit-color: #ffaa44;
+            --undo-color: #5cbf61;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s, opacity 0.3s, transform 0.3s;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: 28px;
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .input-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input, button, select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg-color);
+            color: var(--text-color);
+            font-size: 16px; /* Prevents zoom on iOS */
+        }
+
+        input[type="text"], input[type="date"] {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        button:disabled {
+            background-color: var(--disabled-color);
+            cursor: not-allowed;
+        }
+
+        .btn-edit {
+            background-color: var(--edit-color);
+        }
+
+        .btn-edit:hover {
+            background-color: var(--warning-color);
+        }
+
+        .btn-delete {
+            background-color: var(--danger-color);
+        }
+
+        .btn-delete:hover {
+            background-color: #e53935;
+        }
+
+        .btn-undo {
+            background-color: var(--undo-color);
+        }
+
+        .btn-undo:hover {
+            background-color: #43a047;
+        }
+
+        .search-area {
+            margin-bottom: 20px;
+        }
+
+        .search-area input {
+            width: 100%;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filters button {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .filters button.active {
+            background-color: var(--secondary-color);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .task-list {
+            margin-bottom: 20px;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--card-bg-color);
+            transition: all 0.3s ease;
+        }
+
+        .task-item.removing {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-item.overdue {
+            background-color: rgba(244, 67, 54, 0.1);
+        }
+
+        .task-content {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .task-checkbox {
+            margin-right: 15px;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        .task-text {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .task-text.completed {
+            text-decoration: line-through;
+            color: var(--disabled-color);
+        }
+
+        .task-deadline {
+            margin-left: 15px;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 10px;
+            margin-left: 15px;
+        }
+
+        .task-actions button {
+            padding: 8px 12px;
+            font-size: 0.9em;
+        }
+
+        .edit-input {
+            flex: 1;
+            padding: 8px;
+            font-size: 1em;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .export-buttons button {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 30px;
+            color: var(--disabled-color);
+        }
+
+        .undo-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--card-bg-color);
+            color: var(--text-color);
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        .undo-notification.hiding {
+            animation: slideOut 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 100%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+            to {
+                opacity: 0;
+                transform: translate(-50%, 100%);
+            }
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+                margin: 10px auto;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .input-area {
+                flex-direction: column;
+            }
+            
+            input[type="text"], input[type="date"] {
+                width: 100%;
+            }
+            
+            .task-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .task-content {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .task-actions {
+                align-self: flex-end;
+                width: 100%;
+                justify-content: flex-end;
+            }
+            
+            .pagination {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .export-buttons {
+                flex-direction: column;
+            }
+            
+            .undo-notification {
+                width: 90%;
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            /* Improve touch targets for mobile */
+            button, input[type="checkbox"] {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .task-actions button {
+                padding: 10px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .filters {
+                flex-direction: column;
+            }
+            
+            .filters button {
+                width: 100%;
+            }
+            
+            .task-deadline {
+                margin-left: 0;
+                margin-top: 5px;
+                width: 100%;
+            }
+        }
+
+        /* Prevent horizontal scrolling on mobile */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }

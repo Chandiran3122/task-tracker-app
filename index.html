@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Task Tracker</h1>
+            <button class="theme-toggle">🌙</button>
+        </header>
+
+        <div class="input-area">
+            <input type="text" id="task-input" placeholder="Enter a new task...">
+            <input type="date" id="deadline-input">
+            <button id="add-task-btn">Add Task</button>
+        </div>
+
+        <div class="search-area">
+            <input type="text" id="search-input" placeholder="Search tasks...">
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+        </div>
+
+        <div class="task-list" id="task-list">
+            <!-- Tasks will be displayed here -->
+        </div>
+
+        <div class="pagination">
+            <button id="prev-page-btn" disabled>⬅ Previous</button>
+            <span id="page-info">Page 1 of 1</span>
+            <button id="next-page-btn" disabled>Next ➡</button>
+        </div>
+
+        <div class="export-buttons">
+            <button id="export-json-btn">Export as JSON</button>
+            <button id="export-csv-btn">Export as CSV</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
